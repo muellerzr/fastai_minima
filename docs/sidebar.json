@@ -1,0 +1,10 @@
+{
+  "fastai_minima": {
+    "Overview": "/",
+    "Optimizers": "optimizer.html",
+    "Callbacks": "callback.core.html",
+    "Learner, Metrics, and Basic Callbacks": "learner.html",
+    "Metrics": "metrics.html",
+    "Training Callbacks": "callback.training.html"
+  }
+}
