@@ -22,6 +22,7 @@ __all__ = ['DataLoaders', 'replacing_yield', 'mk_metric', 'save_model', 'load_mo
 # Cell
 import pickle
 from contextlib import contextmanager
+from functools import partial
 
 from fastcore.basics import GetAttr, add_props, store_attr, detuplify, patch, Self
 from fastcore.foundation import L
