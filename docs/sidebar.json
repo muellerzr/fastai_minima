@@ -5,6 +5,7 @@
     "Callbacks": "callback.core.html",
     "Learner, Metrics, and Basic Callbacks": "learner.html",
     "Metrics": "metrics.html",
+    "Training Utility Callbacks": "callback.training_utils.html",
     "Training Callbacks": "callback.training.html"
   }
 }

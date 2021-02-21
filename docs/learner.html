@@ -121,6 +121,14 @@ nb_path: "03_learner.ipynb"
 
 </div>
 
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The history saving thread hit an unexpected error (OperationalError(&#39;disk I/O error&#39;)).History will not be written to the database.
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -340,10 +348,10 @@ nb_path: "03_learner.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>opt_func</code> will be used to create an optimizer when <a href="/fastai_minima/learner.html#Learner.fit"><code>Learner.fit</code></a> is called, with <code>lr</code> as a default learning rate. <code>splitter</code> is a function that takes <code>self.model</code> and returns a list of parameter groups (or just one parameter group if there are no different parameter groups). The default is <code>trainable_params</code>, which returns all trainable parameters of the model.</p>
-<p><code>cbs</code> is one or a list of <a href="/fastai_minima/callback.core.html#Callback"><code>Callback</code></a>s  to pass to the <a href="/fastai_minima/learner.html#Learner"><code>Learner</code></a>. <a href="/fastai_minima/callback.core.html#Callback"><code>Callback</code></a>s are used for every tweak of the training loop. Each <a href="/fastai_minima/callback.core.html#Callback"><code>Callback</code></a> is registered as an attribute of <a href="/fastai_minima/learner.html#Learner"><code>Learner</code></a> (with camel case). At creation, all the callbacks in <code>defaults.callbacks</code> (<a href="/fastai_minima/callback.core.html#TrainEvalCallback"><code>TrainEvalCallback</code></a>, <a href="/fastai_minima/learner.html#Recorder"><code>Recorder</code></a> and <a href="/fastai_minima/callback.training.html#ProgressCallback"><code>ProgressCallback</code></a>) are associated to the <a href="/fastai_minima/learner.html#Learner"><code>Learner</code></a>.</p>
+<p><code>cbs</code> is one or a list of <a href="/fastai_minima/callback.core.html#Callback"><code>Callback</code></a>s  to pass to the <a href="/fastai_minima/learner.html#Learner"><code>Learner</code></a>. <a href="/fastai_minima/callback.core.html#Callback"><code>Callback</code></a>s are used for every tweak of the training loop. Each <a href="/fastai_minima/callback.core.html#Callback"><code>Callback</code></a> is registered as an attribute of <a href="/fastai_minima/learner.html#Learner"><code>Learner</code></a> (with camel case). At creation, all the callbacks in <code>defaults.callbacks</code> (<a href="/fastai_minima/callback.core.html#TrainEvalCallback"><code>TrainEvalCallback</code></a>, <a href="/fastai_minima/learner.html#Recorder"><code>Recorder</code></a> and <a href="/fastai_minima/callback.training_utils.html#ProgressCallback"><code>ProgressCallback</code></a>) are associated to the <a href="/fastai_minima/learner.html#Learner"><code>Learner</code></a>.</p>
 <p><code>metrics</code> is an optional list of metrics, that can be either functions or <a href="/fastai_minima/learner.html#Metric"><code>Metric</code></a>s (see below).</p>
 <p><code>path</code> and <code>model_dir</code> are used to save and/or load models. Often <code>path</code> will be inferred from <code>dls</code>, but you can override it or pass a <code>Path</code>  object to <code>model_dir</code>. Make sure you can write in <code>path/model_dir</code>!</p>
-<p><code>wd</code> is the default weight decay used when training the model; <code>moms</code>, the default momentums used in <a href="/fastai_minima/learner.html#Learner.fit_one_cycle"><code>Learner.fit_one_cycle</code></a>. <code>wd_bn_bias</code> controls if weight decay is applied to <code>BatchNorm</code> layers and bias.</p>
+<p><code>wd</code> is the default weight decay used when training the model; <code>moms</code>, the default momentums used in <a href="/fastai_minima/callback.training.html#Learner.fit_one_cycle"><code>Learner.fit_one_cycle</code></a>. <code>wd_bn_bias</code> controls if weight decay is applied to <code>BatchNorm</code> layers and bias.</p>
 <p>Lastly, <code>train_bn</code> controls if <code>BatchNorm</code> layers are trained even when they are supposed to be frozen according to the <code>splitter</code>. Our empirical experiments have shown that it's the best behavior for those layers in transfer learning.</p>
 
 </div>

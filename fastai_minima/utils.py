@@ -39,6 +39,27 @@ defaults.__doc__= "fastai defaults"
 
 NoneType = type(None)
 
+defaults.use_cuda = None
+
+def params(m):
+    "Return all parameters of `m`"
+    return [p for p in m.parameters()]
+
+def default_device(use_cuda=-1):
+    "Return or set default device; `use_cuda`: None - CUDA if available; True - error if not available; False - CPU"
+    if use_cuda != -1: defaults.use_cuda=use_cuda
+    use = defaults.use_cuda or (torch.cuda.is_available() and defaults.use_cuda is None)
+    assert torch.cuda.is_available() or not use
+    return torch.device(torch.cuda.current_device()) if use else torch.device('cpu')
+
+def to_device(b, device=None):
+    "Recursively put `b` on `device`."
+    if defaults.use_cuda==False: device='cpu'
+    elif device is None: device=default_device()
+    def _inner(o): return o.to(device, non_blocking=True) if isinstance(o,Tensor) else o.to_device(device) if hasattr(o, "to_device") else o
+    return apply(_inner, b)
+
+
 def to_concat(xs, dim=0):
     "Concat the element in `xs` (recursively if they are tuples/lists of tensors)"
     if not xs: return xs

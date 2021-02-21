@@ -22,6 +22,9 @@ entries:
       title: Metrics
       url: metrics.html
     - output: web,pdf
+      title: Training Utility Callbacks
+      url: callback.training_utils.html
+    - output: web,pdf
       title: Training Callbacks
       url: callback.training.html
     output: web

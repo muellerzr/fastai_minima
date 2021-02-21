@@ -2,6 +2,11 @@
 # fastai_minima
 > A mimal version of fastai with the barebones needed to work with Pytorch
 
+
+```python
+#all_slow
+```
+
 ## Install
 
 `pip install fastai_minima`
@@ -18,7 +23,7 @@ This library is designed to bring in only the _minimal_ needed from [fastai](htt
 
 Below we can find a very minimal example based off my [Pytorch to fastai, Bridging the Gap](https://muellerzr.github.io/fastblog/2021/02/14/Pytorchtofastai.html) article:
 
-```
+```python
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -43,7 +48,7 @@ testloader = torch.utils.data.DataLoader(dset_test, batch_size=4,
     Files already downloaded and verified
 
 
-```
+```python
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -67,31 +72,31 @@ class Net(nn.Module):
         return x
 ```
 
-```
+```python
 criterion = nn.CrossEntropyLoss()
 ```
 
-```
+```python
 from torch import optim
 from fastai_minima.optimizer import OptimWrapper
 from fastai_minima.learner import Learner, DataLoaders
 from fastai_minima.callback.training import CudaCallback, ProgressCallback
 ```
 
-```
+```python
 def opt_func(params, **kwargs): return OptimWrapper(optim.SGD(params, **kwargs))
 
 dls = DataLoaders(trainloader, testloader)
 ```
 
-```
+```python
 learn = Learner(dls, Net(), loss_func=criterion, opt_func=opt_func)
 
 # To use the GPU, do 
 # learn = Learner(dls, Net(), loss_func=criterion, opt_func=opt_func, cbs=[CudaCallback()])
 ```
 
-```
+```python
 learn.fit(2, lr=0.001)
 ```
 
@@ -125,3 +130,12 @@ learn.fit(2, lr=0.001)
     /mnt/d/lib/python3.7/site-packages/torch/autograd/__init__.py:132: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
       allow_unreachable=True)  # allow_unreachable flag
 
+
+If you want to do differential learning rates, when creating your `splitter` to pass into fastai's `Learner` you should utilize the `convert_params` to make it compatable with Pytorch Optimizers:
+
+```python
+def splitter(m): return convert_params([[m.a], [m.b]])
+```
+```python
+learn = Learner(..., splitter=splitter)
+```

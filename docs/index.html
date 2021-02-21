@@ -312,6 +312,17 @@ Files already downloaded and verified
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you want to do differential learning rates, when creating your <code>splitter</code> to pass into fastai's <a href="/fastai_minima/learner.html#Learner"><code>Learner</code></a> you should utilize the <a href="/fastai_minima/optimizer.html#convert_params"><code>convert_params</code></a> to make it compatable with Pytorch Optimizers:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">splitter</span><span class="p">(</span><span class="n">m</span><span class="p">):</span> <span class="k">return</span> <span class="n">convert_params</span><span class="p">([[</span><span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">],</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">b</span><span class="p">]])</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">splitter</span><span class="o">=</span><span class="n">splitter</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
 </div>
  
 
