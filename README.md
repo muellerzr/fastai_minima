@@ -2,11 +2,6 @@
 # fastai_minima
 > A mimal version of fastai with the barebones needed to work with Pytorch
 
-
-```
-#all_slow
-```
-
 ## Install
 
 `pip install fastai_minima`
