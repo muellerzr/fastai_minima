@@ -24,7 +24,7 @@ from ..utils import defaults, noop
 
 from fastprogress.fastprogress import progress_bar,master_bar
 
-from fastcore.basics import patch
+from fastcore.basics import patch, ifnone
 from contextlib import contextmanager
 
 # Cell
