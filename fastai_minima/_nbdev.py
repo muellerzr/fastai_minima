@@ -2,8 +2,7 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"Optimizer": "01_optimizer.ipynb",
-         "detuplify_pg": "01_optimizer.ipynb",
+index = {"detuplify_pg": "01_optimizer.ipynb",
          "set_item_pg": "01_optimizer.ipynb",
          "pytorch_hp_map": "01_optimizer.ipynb",
          "OptimWrapper": "01_optimizer.ipynb",
